@@ -1,0 +1,10 @@
+COMMON: &common
+  JWJC_URL: "http://jwjc.scstc.cn/"
+
+NEI: &nei
+  # 内网环境
+  <<: *common
+
+WAI: &wai
+  # 外网环境
+  <<: *common
