@@ -1,5 +1,8 @@
 COMMON: &common
   JWJC_URL: "http://jwjc.scstc.cn/"
+  HEADERS:
+    User-Agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.49'
+    Referer: 'http://10.139.4.15/web/web/web/index?pmkd=1920&pmgd=1001'
 
 NEI: &nei
   # 内网环境
