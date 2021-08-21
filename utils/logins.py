@@ -42,4 +42,4 @@ def get_login_cookies(xh:str, pwd:str, config:dict):
 
 if __name__ == '__main__':
     print(login_str('abc'))
-    get_login_cookies('202040030804', 'cly12345', {'JWJC_URL': 'http://jwjc.scstc.cn', 'HEADERS': {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}})
+    get_login_cookies('202040030804', 'yyyccc12', {'JWJC_URL': 'http://jwjc.scstc.cn', 'HEADERS': {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}})
