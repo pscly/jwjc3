@@ -23,8 +23,6 @@ def get_login_cookies(xh:str, pwd:str, config:dict):
     return: [{'cookies':'xx'}, {'user':'xx','date':'当前时间'}], 1
     return: [], 0
     """
-    dl_url = config['JWJC_URL'] + "/web/web/web/index?pmkd=1920&pmgd=441"
-    dl_post_url = config['JWJC_URL'] + "/jiaoshi/bangong/main/check"
     headers = config['HEADERS']
     re_shouye_name = '>(.*?),欢迎您!<'
 
@@ -36,24 +34,10 @@ def get_login_cookies(xh:str, pwd:str, config:dict):
         'user1': login_str(xh),
         'pwd1': login_str(pwd),
     },re_text=re_shouye_name)
-    
+
     if not (x1 := re.findall(re_shouye_name, x[0].text)):
         return {}, 0
     return [x[0].cookies.get_dict(), {'name': x1[0], 'date':strftime("%Y-%m-%d")}], 1
-
-    # zb1 = requests.get(dl_url, headers=headers)
-    # zb2 = requests.post(dl_post_url, data={
-    #     'user': xh,
-    #     'pwd': '',
-    #     'user1': login_str(xh),
-    #     'pwd1': login_str(pwd),
-    # }, headers=headers, cookies=zb1.cookies.get_dict())
-
-    # zb2.encoding = 'gbk'
-    # if not (x1 := re.findall(re_shouye_name, zb2.text)):
-    #     return {}, 0
-    # return [zb2.cookies.get_dict(), {'name': x1[0], 'date':strftime("%Y-%m-%d")}], 1
-
 
 
 if __name__ == '__main__':
