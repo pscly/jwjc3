@@ -4,17 +4,17 @@ import yaml, json
 
 def is_file(path):
     if not (os.path.isfile(path)):
-        raise path + '文件不存在'
+        return False
     return True
     
 def load_config_yaml(path='config/config.yaml', mode='WAI'):
-    """
-    加载配置文件
-    """
+    if is_file(path):
+        raise Exception(path + '文件不存在')
     return yaml.safe_load(open(path, 'r'))[mode]
     
 def load_json(path='config/config.json'):
-
+    if is_file(path):
+        raise Exception(path + '文件不存在')
     return json.load(open(path, 'r'))
 
 class MyRes():
