@@ -1,4 +1,5 @@
 COMMON: &common
+  DB: "mysql+pymysql://root:@127.0.0.1:3306/jwjc3?charset=utf8"
   JWJC_URL: "http://jwjc.scstc.cn/"
   HEADERS:
     User-Agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.49'
