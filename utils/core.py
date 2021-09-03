@@ -46,8 +46,10 @@ class MyRes():
         self.cookies = res1.cookies.get_dict()
         self.headers = res1.headers
         self.headers['Referer'] = url
+        self.text = res1.text
+        self.res1 = res1
         if re_text:
-            re_hou = re.findall(re_text,res1.text)
+            re_hou = re.findall(re_text, res1.text)
             return res1, re_hou
         return res1, None
 
@@ -61,6 +63,7 @@ class MyRes():
         self.cookies = res1.cookies.get_dict()
         # self.headers = res1.headers
         self.headers['Referer'] = url
+        self.res1 = res1
         if re_text:
             re_hou = re.findall(re_text, res1.text)
             return res1, re_hou
