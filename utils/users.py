@@ -5,6 +5,8 @@ from utils import core
 def get_uesr_info(cookies, config):
     """
     获取用户详细信息
+    return {}
+    return False
     """
     info_url = '/jiaoshi/xslm/info/bjiben'
     re_text = '<td *class=g_body *align=center *>(.*?)</td>'
