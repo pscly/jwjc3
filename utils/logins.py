@@ -15,6 +15,13 @@ def login_str(s1:str) -> str:
 def get_login_cookies(xh:str, pwd:str, config:dict):
     """
 
+    判断是否登录成功:
+    x = get_login_cookies(...)
+    if x[-1]:
+        登录成功
+    else:
+        登录失败
+        
     args:
         xh: 学号
         pwd: 密码
