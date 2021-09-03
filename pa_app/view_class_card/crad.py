@@ -50,15 +50,15 @@ def main(s1: str):
 
     # 人名
     r_data.userinfo['name'] = _[0] if (
-        _ := re.findall(r'align=right ?>(.*?)</td>', s1)) else ''
+        _ := re.findall(r'align="?right"? ?>(.*?)</td>', s1)) else ''
 
     # 班级
     r_data.userinfo['class'] = _[0] if (
-        _ := re.findall(r'align=left ?>(.*?)</td>', s1)) else ''
+        _ := re.findall(r'align="?left"? ?>(.*?)</td>', s1)) else ''
 
     # 学年
     r_data.userinfo['stu_year'] = _[0] if (_ := re.findall(
-        r'size=3>四川科技职业学院(.*?)课程表</font>', s1)) else ''
+        r'四川科技职业学院(.*?)课程表', s1)) else ''
 
     class_data = Dict()
 
@@ -88,8 +88,8 @@ def main(s1: str):
                     kc_data[kc_data2[1]][kc_data2[4]].teacher = kc_data2[2]
                     kc_data[kc_data2[1]][kc_data2[4]].addr = kc_data2[3]
                     kc_data[kc_data2[1]][kc_data2[4]].mondate_s = kc_data2[4]
-                    kc_data[kc_data2[1]][kc_data2[4]].mondate = [
-                        int(i) for i in kc_data2[4].split('-')]
+                    x = [int(i) for i in kc_data2[4].split('-')]
+                    kc_data[kc_data2[1]][kc_data2[4]].mondate = x[0] * 100 + x[1]
             class_data[zhou] |= kc_data
             zhou += 1
 
@@ -98,7 +98,7 @@ def main(s1: str):
 
 
 if __name__ == '__main__':
-    file_path = r'F:\now2\jwjc3\template\test1.html'
+    file_path = r'F:\now2\jwjc3\template\test2.html'
     with open(file_path, 'r', encoding='utf-8') as f:
         s1 = f.read()
     x = main(s1)
