@@ -20,7 +20,7 @@ def get_login_cookies(xh:str, pwd:str, config:dict):
         pwd: 密码
         config: 配置文件
 
-    return: [{'cookies':'xx'}, {'user':'xx','date':'当前时间'}], 1
+    return: [{cookies...}, {'user':'xx','date':'当前时间'}], 1
     return: [], 0
     """
     headers = config['HEADERS']

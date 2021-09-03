@@ -11,11 +11,11 @@ config = core.load_config_yaml(mode='WAI')  # WAI 是外网访问，NEI 是内�
 
 
 if __name__ == '__main__':
-    login_view(config)
+    # login_view(config)
 
 
-    # x = logins.get_login_cookies('202040030804','yyqq12',config)
-    # print(x)
+    x = logins.get_login_cookies('202040030804','abcd123',config)
+    print(x)
     # x = update_pwd('yyqq12', 'yyqq12', config, cookies=x[0][0])    # 其实可以吧x封装成类，然后在里面判断
     # x = update_pwd('yyqq12', 'yyqq12', config, xh='202040030804')    # 其实可以吧x封装成类，然后在里面判断
 

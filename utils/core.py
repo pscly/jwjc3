@@ -8,7 +8,7 @@ def is_file(path):
     return True
     
 def load_config_yaml(path='config/config.yaml', mode='WAI'):
-    if is_file(path):
+    if not is_file(path):
         raise Exception(path + '文件不存在')
     return yaml.safe_load(open(path, 'r'))[mode]
     
