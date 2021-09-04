@@ -2,16 +2,16 @@ import os
 
 from utils import core
 
-def get_uesr_info(cookies, config):
+def get_uesr_info(res1):
     """
     获取用户详细信息
-    return {}
-    return False
+    return res1, {}
+    return res1, False
     """
     info_url = '/jiaoshi/xslm/info/bjiben'
     re_text = '<td *class=g_body *align=center *>(.*?)</td>'
 
-    res1 = core.MyRes(config, config.get('HEADERS'), cookies)
+    # res1 = core.MyRes(config, config.get('HEADERS'), cookies)
     user_info = res1.get_res(info_url, re_text)[-1]
     if not user_info:
         print('获取用户信息失败')
@@ -26,4 +26,4 @@ def get_uesr_info(cookies, config):
         '专业': user_info[7],
         '系部': user_info[9],
     }
-    return user_info_dic
+    return res1, user_info_dic

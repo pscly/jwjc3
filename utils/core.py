@@ -27,6 +27,7 @@ class MyRes():
         self.headers = headers
         self.cookies = cookies
         self.coding = coding
+        self.xueqi = '0'
     
     def get_res(self, url, re_text=None, params={}):
         '''
