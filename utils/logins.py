@@ -27,7 +27,7 @@ def get_login_cookies(xh:str, pwd:str, config:dict):
         pwd: 密码
         config: 配置文件
 
-    return: [{cookies...}, {'user':'xx','date':'当前时间'}], 1
+    return: [res_obj, {'user':'xx','date':'当前时间'}], 1
     return: [], 0
     """
     headers = config['HEADERS']
@@ -44,7 +44,10 @@ def get_login_cookies(xh:str, pwd:str, config:dict):
 
     if not (x1 := re.findall(re_shouye_name, x[0].text)):
         return {}, 0
-    return [x[0].cookies.get_dict(), {'name': x1[0], 'date':strftime("%Y-%m-%d")}], 1
+    res1.xh = xh
+    res1.pwd = pwd
+    res1.name = x1[0]
+    return [res1, {'name': x1[0], 'date':strftime("%Y-%m-%d")}], 1
 
 
 if __name__ == '__main__':

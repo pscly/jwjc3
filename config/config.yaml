@@ -8,6 +8,7 @@ COMMON: &common
 NEI: &nei
   # 内网环境
   <<: *common
+  JWJC_URL: "http://10.139.4.15/"
 
 WAI: &wai
   # 外网环境

@@ -27,8 +27,12 @@ class MyRes():
         self.headers = headers
         self.cookies = cookies
         self.coding = coding
+        self.xueqi = '0'
+        self.xh = ''
+        self.pwd = ''
+        self.name = ''
     
-    def get_res(self, url, re_text=None):
+    def get_res(self, url, re_text=None, params={}):
         '''
         封装requests.get方法
         args:
@@ -41,9 +45,9 @@ class MyRes():
         返回res1，想要什么就拿什么
         '''
         url = self.config['JWJC_URL'] + url
-        res1 = requests.get(url, headers=self.headers, cookies=self.cookies)
+        res1 = requests.get(url, cookies=self.cookies, params=params)
         res1.encoding = self.coding
-        self.cookies = res1.cookies.get_dict()
+        self.cookies.update(res1.cookies.get_dict())
         self.headers = res1.headers
         self.headers['Referer'] = url
         self.text = res1.text
@@ -60,7 +64,7 @@ class MyRes():
         url = self.config['JWJC_URL'] + url
         res1 = requests.post(url, data=data, cookies=self.cookies)  # 这里加上header就有问题
         res1.encoding = self.coding
-        self.cookies = res1.cookies.get_dict()
+        self.cookies.update(res1.cookies.get_dict())
         # self.headers = res1.headers
         self.headers['Referer'] = url
         self.res1 = res1
