@@ -44,6 +44,9 @@ def get_login_cookies(xh:str, pwd:str, config:dict):
 
     if not (x1 := re.findall(re_shouye_name, x[0].text)):
         return {}, 0
+    res1.xh = xh
+    res1.pwd = pwd
+    res1.name = x1[0]
     return [res1, {'name': x1[0], 'date':strftime("%Y-%m-%d")}], 1
 
 
