@@ -15,16 +15,25 @@ from pa_app.view_class_card import crad
 
 YEAR = 2021
 XUE_2 = 4
-MAX_REN = 50    # 最大人数
+BANJI_MAX = 10  # 最多个班级
+MAX_REN = 50    # 一个班级最大人数
 PWD = '123456'
 config = core.load_config_yaml(mode='WAI')
 
 def get_user(start):
-    for i in range(start, start+MAX_REN):
+    '''
+    202040030101    # 最后的01在这里进行拼接(也就是这个人在班级里的学号)
+    start: 2020400301
+    '''
+    is_you = 0
+    for i in range(1, MAX_REN+1):
+        if i == 21 and is_you == 0:
+            return False    # 这个班级没人,后面就不用跑了
         try:
-            x = logins.get_login_cookies(i, PWD, config)
+            x = logins.get_login_cookies(start*100+i, PWD, config)
             if not x[-1]:
                 continue
+            is_you = 1
             res = x[0]
             users.get_uesr_info(res)
             view_funcs.xueqi_xuanze(res, 1)
@@ -33,6 +42,17 @@ def get_user(start):
             print(e)
             continue
 
+def get_zhuanye(xh:int):
+    """
+    给前面几位, 后面的自动补充
+    202040030101
+    xh: 20204003
+    """
+    
+    for i in range(1, BANJI_MAX+1):
+        get_user(xh*100+i)
 
 if __name__ == '__main__':
-    print(get_user(202040030101))
+    # print(get_user(202040090101))
+    # print(get_user(202140020201))
+    print(get_zhuanye(20204009))
