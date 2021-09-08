@@ -50,9 +50,14 @@ def get_zhuanye(xh:int):
     xh: 20204003
     """
     x = 0
+    x2 = 0
     for i in range(1, BANJI_MAX+1):
         if x > 3:   # 如果走了3个班都没人
-            return 1
+            xh += 1
+            x - 3
+            x2 += 1
+            if x2 > 3:
+                return 1
         x += get_user(xh*100+i)
 
     return 0
@@ -65,9 +70,15 @@ def get_yuan1(xh:int):
     xh: 202040
     """
     x = 0
+    x2 = 0
     for i in range(1, BANJI_MAX+1):
-        if x < 3: # 如果3个专业都没人(没有这三个专业)
-            return 1
+        if x > 3: # 如果3个专业都没人(没有这三个专业)
+            xh += 1
+            x - 3
+            x2 += 1
+            if x2 > 3:
+                # return 1
+                xh += 0
         x += get_zhuanye(xh*100+i)
         
     return 0
@@ -75,7 +86,7 @@ def get_yuan1(xh:int):
 
 if __name__ == '__main__':
     # print(get_user(202040090101))
-    print(get_zhuanye(20204021))
-    # print(get_yuan1(202040))
+    # print(get_zhuanye(20204021))
+    print(get_yuan1(202039))
     # print(get_yuan1(202040030422))
     
