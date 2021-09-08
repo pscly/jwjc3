@@ -17,5 +17,6 @@ class Users(Base):
     lianji = Column(Integer)
     sfz = Column(String(32))
     phone = Column(String(32))
+    banji = Column(String(32))
     create_time = Column(DateTime, default=datetime.datetime.now)
 

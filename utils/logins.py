@@ -4,8 +4,7 @@ from utils.core import MyRes
 
 # 登录加密算法
 def login_str(s1:str) -> str:
-    if not isinstance(s1, str):
-        raise TypeError('s1 不是字符串')
+    s1 = str(s1)
     s2 = ''  # 返回的字符串
     for i in s1:
         s2 += str(100000+ord(i))
@@ -43,11 +42,13 @@ def get_login_cookies(xh:str, pwd:str, config:dict):
     },re_text=re_shouye_name)
 
     if not (x1 := re.findall(re_shouye_name, x[0].text)):
-        return {}, 0
+        print(xh, '登录失败')
+        return res1, 0
+    print(xh, '登录成功')
     res1.xh = xh
     res1.pwd = pwd
     res1.name = x1[0]
-    return [res1, {'name': x1[0], 'date':strftime("%Y-%m-%d")}], 1
+    return res1, 1
 
 
 if __name__ == '__main__':

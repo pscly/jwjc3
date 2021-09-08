@@ -18,7 +18,7 @@ if __name__ == '__main__':
     print(x)
     if x[-1]:
         print('登录成功')
-        res, user_info = users.get_uesr_info(x[0][0])
+        res, user_info = users.get_uesr_info(x[0])
         print('>>>',user_info,'<<<')
 
         view_funcs.xueqi_xuanze(res, 1)
