@@ -27,8 +27,8 @@ def get_user(start):
     '''
     is_you = 0
     for i in range(1, MAX_REN+1):
-        if i == 21 and is_you == 0:
-            return 2    # 这个班级没人,后面就不用跑了
+        if i == 15 and is_you == 0:
+            return 1    # 这个班级没人,后面就不用跑了
         try:
             x = logins.get_login_cookies(start*100+i, PWD, config)
             if not x[-1]:
@@ -41,7 +41,7 @@ def get_user(start):
         except Exception as e:
             print(e)
             continue
-    return 1
+    return 0
 
 def get_zhuanye(xh:int):
     """
@@ -51,13 +51,11 @@ def get_zhuanye(xh:int):
     """
     x = 0
     for i in range(1, BANJI_MAX+1):
-        if i > 5 and x2 == 2:
-            return 2
-        x2 = get_user(xh*100+i)
-        if x2:
-            x = x2
+        if x > 3:   # 如果走了3个班都没人
+            return 1
+        x += get_user(xh*100+i)
 
-    return 1
+    return 0
             
 
 def get_yuan1(xh:int):
@@ -68,18 +66,16 @@ def get_yuan1(xh:int):
     """
     x = 0
     for i in range(1, BANJI_MAX+1):
-        if i > 5 and x == 2:
-            return 0
-        x2 = get_zhuanye(xh*100+i)
-        if x2:
-            x = x2
+        if x < 3: # 如果3个专业都没人(没有这三个专业)
+            return 1
+        x += get_zhuanye(xh*100+i)
         
-    return 1
+    return 0
 
 
 if __name__ == '__main__':
     # print(get_user(202040090101))
-    print(get_user(2020402102))
+    print(get_zhuanye(20204021))
     # print(get_yuan1(202040))
     # print(get_yuan1(202040030422))
     

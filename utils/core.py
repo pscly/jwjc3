@@ -1,6 +1,7 @@
 import os
 import requests, re
 import yaml, json
+from utils import view_funcs
 
 def is_file(path):
     if not (os.path.isfile(path)):
@@ -31,13 +32,13 @@ class MyRes():
         self.xh = ''
         self.pwd = ''
         self.name = ''
+        self.url = ''
     
     def get_res(self, url, re_text=None, params={}):
         '''
         封装requests.get方法
         args:
             url: 访问地址
-            cookies: cookies
             re_text: 可选，提供正则，自动匹配
             headers: 可选，自己提供一个headers
 
@@ -48,6 +49,7 @@ class MyRes():
         res1 = requests.get(url, cookies=self.cookies, params=params)
         res1.encoding = self.coding
         self.cookies.update(res1.cookies.get_dict())
+        self.url = url
         self.headers = res1.headers
         self.headers['Referer'] = url
         self.text = res1.text
@@ -63,6 +65,7 @@ class MyRes():
         '''
         url = self.config['JWJC_URL'] + url
         res1 = requests.post(url, data=data, cookies=self.cookies)  # 这里加上header就有问题
+        res1.url = self.url
         res1.encoding = self.coding
         self.cookies.update(res1.cookies.get_dict())
         # self.headers = res1.headers
@@ -72,4 +75,7 @@ class MyRes():
             re_hou = re.findall(re_text, res1.text)
             return res1, re_hou
         return res1, None
+
+    def choose_xueqi(self, xueqi):
+        view_funcs.xueqi_xuanze(self, xueqi)
 

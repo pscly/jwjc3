@@ -1,5 +1,6 @@
 import os, requests, re
 from time import strftime
+from utils import view_funcs
 from utils.core import MyRes
 
 # 登录加密算法
@@ -14,7 +15,7 @@ def login_str(s1:str) -> str:
 def get_login_cookies(xh:str, pwd:str, config:dict):
     """
 
-    判断是否登录成功:
+    判断是否登录成功，登录成功就会自动选择第一学期:
     x = get_login_cookies(...)
     if x[-1]:
         登录成功
@@ -48,6 +49,10 @@ def get_login_cookies(xh:str, pwd:str, config:dict):
     res1.xh = xh
     res1.pwd = pwd
     res1.name = x1[0]
+
+    # 选择学期
+    res1.choose_xueqi(0)
+    
     return res1, 1
 
 

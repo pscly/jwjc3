@@ -3,10 +3,7 @@ import requests
 import re
 sys.path.append("..")
 
-
-from utils.core import MyRes
-
-def xueqi_xuanze(res_obj: MyRes, xueqi:int):
+def xueqi_xuanze(res_obj, xueqi:int):
     '''
     xueqi: int 你要选择的学期序号(从0开始) 这学期是0, 上学期是1, 上上是2
     '''
