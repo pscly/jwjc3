@@ -39,11 +39,12 @@ def get_uesr_info(res1, to_db=1):
         user_obj.code = user_info_dic['学号'],
         user_obj.name = user_info_dic['姓名'],
         user_obj.pwd = res1.pwd,
-        user_obj.gender = 2 if user_info_dic['性别'] == '男' else 1,
+        user_obj.gender = 1 if user_info_dic['性别'] == '男' else 2,
         user_obj.zhuanye = user_info_dic['专业'],
         user_obj.xueyuan = user_info_dic['系部'],
         user_obj.lianji = user_info_dic['年级'],
         user_obj.sfz = user_info_dic['身份证']
+        user_obj.banji = user_info_dic['班级']
 
         db.session.add(user_obj)
         db.session.commit()
