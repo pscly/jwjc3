@@ -13,7 +13,9 @@ def xuanke_jx(html:str):
     xk_b = soup.find_all('table')[-2]
     xk_tr = xk_b.find_all('tr')[1:]
     for kc in xk_tr:
-
+        # 如果是已满，那就获取不到课程 url
+        if kc.find_all('td')[12].text.strip(' ') == '已满':
+            continue
         xk_url = kc.find_all('td')[13].a['href']
         # 这里后期可能会使用strip功能实现，但是现在又不回拿到前面的域名
         # xk_url =  re.findall(r'http://.*?/(.*)', kc.find_all('td')[13].a['href'])[0]  
