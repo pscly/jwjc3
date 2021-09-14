@@ -4,10 +4,14 @@
 # END-DATE:
 # 课程表分析
 
+import sys
 import re
 from addict import Dict
 from bs4 import BeautifulSoup
 from rich import print
+sys.path.append(r'f:\now2\jwjc3')
+from entities.db_mysql import db
+from entities.models import Users, KechengInfo 
 
 
 def main(s1: str):
@@ -90,6 +94,7 @@ def main(s1: str):
                     kc_data[kc_data2[1]][kc_data2[4]].mondate_s = kc_data2[4]
                     x = [int(i) for i in kc_data2[4].split('-')]
                     kc_data[kc_data2[1]][kc_data2[4]].mondate = x[0] * 100 + x[1]
+                    kc_data[kc_data2[1]][kc_data2[4]].xueqi = r_data.userinfo['stu_year']
             class_data[zhou] |= kc_data
             zhou += 1
 
@@ -97,9 +102,34 @@ def main(s1: str):
     return r_data
 
 
+
+def save_crad(crad_data, stu_code):
+    for all_data in crad_data.class_data:
+        
+        for zhou in crad_data.class_data[all_data]:
+            zhou = all_data.zhou
+            for data in zhou:
+                data = zhou.data
+                kcinfo = KechengInfo(
+                    keming = data.name,
+                    zhouji = data.zhou, 
+                    addr = data.addr,
+                    teacher = data.teacher,
+                    date_week = data.mondate,
+                    date_time = data.date,
+                    xueqi = data.xueqi
+                )   
+                db.session.add(kcinfo)
+                db.session.commit()
+
+
+
 if __name__ == '__main__':
     file_path = r'F:\now2\jwjc3\template\test2.html'
     with open(file_path, 'r', encoding='utf-8') as f:
         s1 = f.read()
     x = main(s1)
-    print(x)
+    # print(x)
+    # print(x.class_data)
+    for i in x.class_data:
+        print(x.class_data[i])
