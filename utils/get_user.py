@@ -17,6 +17,7 @@ YEAR = 2021
 XUE_2 = 4
 BANJI_MAX = 10  # 最多个班级
 MAX_REN = 50    # 一个班级最大人数
+DENG_1 = 20     # 等待错误密码的
 PWD = '123456'
 config = core.load_config_yaml(mode='WAI')
 
@@ -27,7 +28,7 @@ def get_user(start):
     '''
     is_you = 0
     for i in range(1, MAX_REN+1):
-        if i == 15 and is_you == 0:
+        if i == DENG_1 and is_you == 0:
             return 1    # 这个班级没人,后面就不用跑了
         try:
             x = logins.get_login_cookies(start*100+i, PWD, config)
@@ -86,7 +87,7 @@ def get_yuan1(xh:int):
 
 if __name__ == '__main__':
     # print(get_user(202040090101))
-    # print(get_zhuanye(20204021))
-    print(get_yuan1(202039))
+    print(get_zhuanye(20214021))
+    # print(get_yuan1(202039))
     # print(get_yuan1(202040030422))
     
